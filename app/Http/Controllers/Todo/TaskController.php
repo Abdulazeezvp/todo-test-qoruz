@@ -181,4 +181,18 @@ class TaskController extends Controller
             200
         );
     }
+
+    public function titleSearch($s)
+    {
+
+        return response(
+            [
+                'status' => true,
+                'data' => [
+                    'result' => $this->taskRepo->searchFor($s)->toJson(),
+                ],
+            ],
+            200
+        );
+    }
 }

@@ -30,4 +30,6 @@ Route::controller(TaskController::class, function () {
 
     Route::get('get/index','index');
 
+    Route::get('get/title/{a}','titleSearch');
+
 });

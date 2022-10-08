@@ -129,4 +129,9 @@ class TaskRepo
         DB::commit();
         return true;
     }
+
+    public function searchFor(string $s)
+    {
+        return Task::where('title', 'LIKE', "%$s%");
+    }
 }
