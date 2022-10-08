@@ -27,4 +27,7 @@ Route::controller(TaskController::class, function () {
 
     //completed url
     Route::put('tasks/{id}/completed', 'completed');
+
+    Route::get('get/index','index');
+
 });
