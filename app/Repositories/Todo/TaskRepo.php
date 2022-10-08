@@ -93,8 +93,10 @@ class TaskRepo
         if ($due != 'all') {
             if ($due == 'overdue') {
                 $task->whereDate('due_on', '<', now()->toDateString())->$task->where('status', false);
-            } else if ($due == 'today') {
-                $task->whereDate('due_on', '=', now()->toDateString())->$task->where('status', false);
+            } else if ($due == 'thisweek') {
+                $task->whereDate('due_on', '>=', now()->startOfWeek()->toDateString())->whereDate('due_on', '<=', now()->endOfWeek()->toDateString())->$task->where('status', false);
+            } else if ($due == 'nextweek') {
+                $task->whereDate('due_on', '>=', Carbon::parse('next monday')->toDateString())->$task->where('status', false);
             }
         }
         return $task->orderBy('due_on', 'DESC')->groupBy('parent_id')->get();
